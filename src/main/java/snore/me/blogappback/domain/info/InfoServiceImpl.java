@@ -1,4 +1,4 @@
-package snore.me.blogappback.api.info;
+package snore.me.blogappback.domain.info;
 
 import java.time.LocalDateTime;
 

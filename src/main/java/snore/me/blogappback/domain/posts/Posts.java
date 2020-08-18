@@ -1,0 +1,39 @@
+package snore.me.blogappback.domain.posts;
+
+import java.time.LocalDateTime;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
+@Getter
+@NoArgsConstructor
+@Entity
+public class Posts {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long post_no;
+    @Column(length = 500, nullable = false)
+    private String title;
+    @Column(columnDefinition = "TEXT", nullable = false)
+    private String content;
+    @CreationTimestamp
+    private LocalDateTime create_dt;
+    @UpdateTimestamp
+    private LocalDateTime update_dt;
+
+    @Builder
+    public Posts(String title, String content) {
+        this.title = title;
+        this.content = content;
+    }
+}
