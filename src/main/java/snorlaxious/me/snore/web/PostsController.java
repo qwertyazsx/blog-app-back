@@ -30,6 +30,11 @@ public class PostsController {
         return postsService.update(post_no, requestDto);
     }
 
+    @GetMapping("/recent")
+    public PostsResponseDto findRecentPost() {
+        return postsService.findRecentPost();
+    }
+
     @GetMapping("/{post_no}")
     public PostsResponseDto findByPostNo(@PathVariable Long post_no) {
         return postsService.findByPostNo(post_no);

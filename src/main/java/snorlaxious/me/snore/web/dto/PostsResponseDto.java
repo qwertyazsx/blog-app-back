@@ -12,7 +12,7 @@ public class PostsResponseDto {
     private final String content;
 
     public PostsResponseDto(Posts entity) {
-        this.post_no = entity.getPost_no();
+        this.post_no = entity.getPostNo();
         this.title = entity.getTitle();
         this.content = entity.getContent();
     }

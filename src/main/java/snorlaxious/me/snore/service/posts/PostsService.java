@@ -17,7 +17,7 @@ public class PostsService {
 
     @Transactional
     public Long save(PostsSaveRequestDto requestDto) {
-        return postsRepository.save(requestDto.toEntity()).getPost_no();
+        return postsRepository.save(requestDto.toEntity()).getPostNo();
     }
 
     @Transactional
@@ -26,6 +26,12 @@ public class PostsService {
                                     .orElseThrow(() -> new IllegalArgumentException("해당 포스트가 없습니다. post_no: " + post_no));
         post.update(requestDto.getTitle(), requestDto.getContent());
         return post_no;
+    }
+
+    public PostsResponseDto findRecentPost() {
+        Posts entity = postsRepository.findFirstByOrderByUpdateDateDesc()
+                                      .orElseThrow(() -> new IllegalArgumentException("포스트가 없습니다."));
+        return new PostsResponseDto(entity);
     }
 
     public PostsResponseDto findByPostNo(Long post_no) {

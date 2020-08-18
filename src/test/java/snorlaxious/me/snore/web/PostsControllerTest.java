@@ -60,7 +60,7 @@ public class PostsControllerTest {
                                                     .title("title")
                                                     .content("content")
                                                     .build());
-        Long updatePostNo = savedPost.getPost_no();
+        Long updatePostNo = savedPost.getPostNo();
         String expectedTitle = "title2";
         String expectedContent = "content2";
         PostsUpdateRequestDto requestDto = PostsUpdateRequestDto.builder()

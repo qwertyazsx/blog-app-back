@@ -21,15 +21,15 @@ import lombok.NoArgsConstructor;
 public class Posts {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long post_no;
+    private Long postNo;
     @Column(length = 500, nullable = false)
     private String title;
     @Column(columnDefinition = "TEXT", nullable = false)
     private String content;
     @CreationTimestamp
-    private LocalDateTime create_dt;
+    private LocalDateTime createDate;
     @UpdateTimestamp
-    private LocalDateTime update_dt;
+    private LocalDateTime updateDate;
 
     @Builder
     public Posts(String title, String content) {
