@@ -1,4 +1,4 @@
-package snorlaxious.me.blogappback;
+package snore.me.blogappback;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

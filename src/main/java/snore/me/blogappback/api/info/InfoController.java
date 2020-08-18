@@ -1,4 +1,4 @@
-package snorlaxious.me.blogappback.api.info;
+package snore.me.blogappback.api.info;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

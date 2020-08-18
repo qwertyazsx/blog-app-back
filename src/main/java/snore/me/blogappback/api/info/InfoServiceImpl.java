@@ -1,4 +1,4 @@
-package snorlaxious.me.blogappback.api.info;
+package snore.me.blogappback.api.info;
 
 import java.time.LocalDateTime;
 
