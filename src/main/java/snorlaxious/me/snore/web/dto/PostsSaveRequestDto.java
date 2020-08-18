@@ -1,9 +1,9 @@
-package snore.me.blogappback.web.dto;
+package snorlaxious.me.snore.web.dto;
 
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import snore.me.blogappback.domain.posts.Posts;
+import snorlaxious.me.snore.domain.posts.Posts;
 
 @Getter
 @NoArgsConstructor

@@ -1,4 +1,4 @@
-package snore.me.blogappback.web;
+package snorlaxious.me.snore.web;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.RequiredArgsConstructor;
-import snore.me.blogappback.service.posts.PostsService;
-import snore.me.blogappback.web.dto.PostsSaveRequestDto;
+import snorlaxious.me.snore.service.posts.PostsService;
+import snorlaxious.me.snore.web.dto.PostsSaveRequestDto;
 
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/posts")

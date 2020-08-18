@@ -1,4 +1,4 @@
-package snore.me.blogappback.web;
+package snorlaxious.me.snore.web;
 
 import java.time.LocalDateTime;
 

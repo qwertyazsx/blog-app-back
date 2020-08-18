@@ -1,4 +1,4 @@
-package snore.me.blogappback.web;
+package snorlaxious.me.snore.web;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

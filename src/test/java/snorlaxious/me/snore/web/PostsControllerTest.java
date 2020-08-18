@@ -1,4 +1,4 @@
-package snore.me.blogappback.web;
+package snorlaxious.me.snore.web;
 
 import java.util.List;
 
@@ -11,9 +11,9 @@ import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-import snore.me.blogappback.domain.posts.Posts;
-import snore.me.blogappback.domain.posts.PostsRepository;
-import snore.me.blogappback.web.dto.PostsSaveRequestDto;
+import snorlaxious.me.snore.domain.posts.Posts;
+import snorlaxious.me.snore.domain.posts.PostsRepository;
+import snorlaxious.me.snore.web.dto.PostsSaveRequestDto;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;

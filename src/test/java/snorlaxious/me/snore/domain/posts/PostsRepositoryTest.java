@@ -1,4 +1,4 @@
-package snore.me.blogappback.domain.posts;
+package snorlaxious.me.snore.domain.posts;
 
 import java.util.List;
 

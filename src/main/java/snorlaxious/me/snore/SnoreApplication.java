@@ -1,11 +1,11 @@
-package snore.me.blogappback;
+package snorlaxious.me.snore;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class BlogAppBackApplication {
+public class SnoreApplication {
     public static void main(String[] args) {
-        SpringApplication.run(BlogAppBackApplication.class, args);
+        SpringApplication.run(SnoreApplication.class, args);
     }
 }

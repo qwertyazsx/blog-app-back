@@ -1,10 +1,10 @@
-package snore.me.blogappback;
+package snorlaxious.me.snore;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class BlogAppBackApplicationTests {
+class SnoreApplicationTests {
     @Test
     void contextLoads() {
     }
