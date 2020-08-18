@@ -25,9 +25,9 @@ public class PostsController {
         return postsService.save(requestDto);
     }
 
-    @PutMapping("/update/{post_no}")
-    public Long update(@PathVariable Long post_no, @RequestBody PostsUpdateRequestDto requestDto) {
-        return postsService.update(post_no, requestDto);
+    @PutMapping("/update/{postNo}")
+    public Long update(@PathVariable Long postNo, @RequestBody PostsUpdateRequestDto requestDto) {
+        return postsService.update(postNo, requestDto);
     }
 
     @GetMapping("/recent")
@@ -35,8 +35,8 @@ public class PostsController {
         return postsService.findRecentPost();
     }
 
-    @GetMapping("/{post_no}")
-    public PostsResponseDto findByPostNo(@PathVariable Long post_no) {
-        return postsService.findByPostNo(post_no);
+    @GetMapping("/{postNo}")
+    public PostsResponseDto findByPostNo(@PathVariable Long postNo) {
+        return postsService.findByPostNo(postNo);
     }
 }
