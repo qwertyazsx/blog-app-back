@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import lombok.RequiredArgsConstructor;
 import snorlaxious.me.snore.domain.posts.Posts;
 import snorlaxious.me.snore.domain.posts.PostsRepository;
+import snorlaxious.me.snore.utils.PostNotFoundException;
 import snorlaxious.me.snore.web.dto.PostsResponseDto;
 import snorlaxious.me.snore.web.dto.PostsSaveRequestDto;
 import snorlaxious.me.snore.web.dto.PostsUpdateRequestDto;
@@ -30,13 +31,13 @@ public class PostsService {
 
     public PostsResponseDto findRecentPost() {
         Posts entity = postsRepository.findFirstByOrderByUpdateDateDesc()
-                                      .orElseThrow(() -> new IllegalArgumentException("포스트가 없습니다."));
+                                      .orElseThrow(() -> new PostNotFoundException("포스트가 없습니다."));
         return new PostsResponseDto(entity);
     }
 
     public PostsResponseDto findByPostNo(Long post_no) {
         Posts entity = postsRepository.findById(post_no)
-                                      .orElseThrow(() -> new IllegalArgumentException("해당 포스트가 없습니다. post_no: " + post_no));
+                                      .orElseThrow(() -> new PostNotFoundException("해당 포스트가 없습니다. post_no: " + post_no));
         return new PostsResponseDto(entity);
     }
 }
