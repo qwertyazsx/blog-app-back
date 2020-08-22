@@ -30,7 +30,7 @@ public class PostsService {
     }
 
     public PostsResponseDto findRecentPost() {
-        Posts entity = postsRepository.findFirstByOrderByUpdateDateDesc()
+        Posts entity = postsRepository.findFirstByOrderByCreateDateDesc()
                                       .orElseThrow(() -> new PostNotFoundException("포스트가 없습니다."));
         return new PostsResponseDto(entity);
     }
