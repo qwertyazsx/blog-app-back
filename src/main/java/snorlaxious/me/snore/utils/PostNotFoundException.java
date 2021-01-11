@@ -5,6 +5,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(code = HttpStatus.NO_CONTENT)
 public class PostNotFoundException extends IllegalArgumentException {
+    private static final long serialVersionUID = 7129735633832935053L;
+
     public PostNotFoundException() {
     }
 
