@@ -1,5 +1,8 @@
 package snorlaxious.me.snore.service.posts;
 
+import java.util.function.Function;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,7 +27,7 @@ public class PostsService {
     @Transactional
     public Long update(Long post_no, PostsUpdateRequestDto requestDto) {
         Posts post = postsRepository.findById(post_no)
-                                    .orElseThrow(() -> new IllegalArgumentException("해당 포스트가 없습니다. post_no: " + post_no));
+                                    .orElseThrow(() -> new PostNotFoundException("해당 포스트가 없습니다. post_no: " + post_no));
         post.update(requestDto.getTitle(), requestDto.getContent());
         return post_no;
     }
@@ -39,5 +42,14 @@ public class PostsService {
         Posts entity = postsRepository.findById(post_no)
                                       .orElseThrow(() -> new PostNotFoundException("해당 포스트가 없습니다. post_no: " + post_no));
         return new PostsResponseDto(entity);
+    }
+
+    public Page<PostsResponseDto> findPostlistPage(Integer page) {
+        return postsRepository.findAll(PageRequest.of(page, 20)).map(new Function<Posts, PostsResponseDto>() {
+            @Override
+            public PostsResponseDto apply(Posts entity) {
+                return new PostsResponseDto(entity);
+            }
+        });
     }
 }

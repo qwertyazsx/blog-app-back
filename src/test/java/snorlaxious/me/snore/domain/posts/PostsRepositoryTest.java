@@ -1,11 +1,11 @@
 package snorlaxious.me.snore.domain.posts;
 
-import java.util.List;
-
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -27,8 +27,8 @@ public class PostsRepositoryTest {
                                   .title(title)
                                   .content(content)
                                   .build());
-        List<Posts> postsList = postsRepository.findAll();
-        Posts post = postsList.get(0);
+        Page<Posts> postsList = postsRepository.findAll(PageRequest.of(0, 100));
+        Posts post = postsList.get().findFirst().get();
         assertEquals(post.getTitle(), title);
         assertEquals(post.getContent(), content);
     }

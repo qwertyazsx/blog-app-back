@@ -2,8 +2,8 @@ package snorlaxious.me.snore.domain.posts;
 
 import java.util.Optional;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.PagingAndSortingRepository;
 
-public interface PostsRepository extends JpaRepository<Posts, Long> {
+public interface PostsRepository extends PagingAndSortingRepository<Posts, Long> {
     Optional<Posts> findFirstByOrderByCreateDateDesc();
 }

@@ -1,13 +1,13 @@
 package snorlaxious.me.snore.web;
 
-import java.util.List;
-
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
@@ -49,9 +49,9 @@ public class PostsControllerTest {
         assertEquals(responseEntity.getStatusCode(), HttpStatus.OK);
         assertNotNull(responseEntity.getBody());
         assertTrue(responseEntity.getBody() > 0L);
-        List<Posts> allPosts = postsRepository.findAll();
-        assertEquals(allPosts.get(0).getTitle(), title);
-        assertEquals(allPosts.get(0).getContent(), content);
+        Page<Posts> allPosts = postsRepository.findAll(PageRequest.of(0, 100));
+        assertEquals(allPosts.get().findFirst().get().getTitle(), title);
+        assertEquals(allPosts.get().findFirst().get().getContent(), content);
     }
 
     @Test
@@ -73,8 +73,8 @@ public class PostsControllerTest {
         assertEquals(responseEntity.getStatusCode(), HttpStatus.OK);
         assertNotNull(responseEntity.getBody());
         assertTrue(responseEntity.getBody() > 0L);
-        List<Posts> allPosts = postsRepository.findAll();
-        assertEquals(allPosts.get(0).getTitle(), expectedTitle);
-        assertEquals(allPosts.get(0).getContent(), expectedContent);
+        Page<Posts> allPosts = postsRepository.findAll(PageRequest.of(0, 100));
+        assertEquals(allPosts.get().findFirst().get().getTitle(), expectedTitle);
+        assertEquals(allPosts.get().findFirst().get().getContent(), expectedContent);
     }
 }
