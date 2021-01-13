@@ -56,6 +56,11 @@ public class PostsController {
         return postsService.findPostlistPage(page - 1);
     }
 
+    @GetMapping("/count")
+    public Long getPostCount() {
+        return postsService.getPostCount();
+    }
+
     // TODO: 태그별 검색 추가
 
     @ResponseStatus(code = HttpStatus.ACCEPTED)
