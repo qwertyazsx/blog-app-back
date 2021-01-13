@@ -45,7 +45,7 @@ public class PostsService {
     }
 
     public Page<PostsResponseDto> findPostlistPage(Integer page) {
-        return postsRepository.findAll(PageRequest.of(page, 20)).map(new Function<Posts, PostsResponseDto>() {
+        return postsRepository.findAllByOrderByUpdateDateDesc(PageRequest.of(page, 20)).map(new Function<Posts, PostsResponseDto>() {
             @Override
             public PostsResponseDto apply(Posts entity) {
                 return new PostsResponseDto(entity);
