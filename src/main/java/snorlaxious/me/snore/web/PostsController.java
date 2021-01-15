@@ -61,6 +61,7 @@ public class PostsController {
         return postsService.getPostCount();
     }
 
+    // TODO: 전체 태그 포스트 수로 정렬해서 응답하는 api 추가
     // TODO: 태그별 검색 추가
 
     @ResponseStatus(code = HttpStatus.ACCEPTED)
