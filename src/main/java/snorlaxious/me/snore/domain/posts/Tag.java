@@ -1,6 +1,6 @@
 package snorlaxious.me.snore.domain.posts;
 
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -24,7 +24,7 @@ public class Tag {
     @Column(length = 20, nullable = false, unique = true)
     private String name;
     @OneToMany(mappedBy = "tag", cascade = CascadeType.ALL)
-    private Set<PostsTag> postsTag;
+    private List<PostsTag> postsTags;
 
     @Builder
     public Tag(String name) {

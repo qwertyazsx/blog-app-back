@@ -1,7 +1,7 @@
 package snorlaxious.me.snore.domain.posts;
 
 import java.time.LocalDateTime;
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -34,7 +34,7 @@ public class Posts {
     @UpdateTimestamp
     private LocalDateTime updateDate;
     @OneToMany(mappedBy = "posts", cascade = CascadeType.ALL)
-    private Set<PostsTag> postsTag;
+    private List<PostsTag> postsTags;
 
     @Builder
     public Posts(String title, String content) {

@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 import java.util.function.Function;
+import java.util.stream.Collectors;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -65,22 +67,33 @@ public class PostsService {
     public PostsResponseDto findRecentPost() {
         Posts entity = postsRepository.findFirstByOrderByCreateDateDesc()
                                       .orElseThrow(() -> new PostNotFoundException("포스트가 없습니다."));
-        return new PostsResponseDto(entity);
+        return makeResponseDtoWithTags(entity);
     }
 
     public PostsResponseDto findByPostNo(Long post_no) {
         Posts entity = postsRepository.findById(post_no)
                                       .orElseThrow(() -> new PostNotFoundException("해당 포스트가 없습니다. post_no: " + post_no));
-        return new PostsResponseDto(entity);
+        return makeResponseDtoWithTags(entity);
     }
 
     public Page<PostsResponseDto> findPostlistPage(Integer page) {
         return postsRepository.findAllByOrderByUpdateDateDesc(PageRequest.of(page, 20)).map(new Function<Posts, PostsResponseDto>() {
             @Override
             public PostsResponseDto apply(Posts entity) {
-                return new PostsResponseDto(entity);
+                return makeResponseDtoWithTags(entity);
             }
         });
+    }
+
+    private PostsResponseDto makeResponseDtoWithTags(Posts entity) {
+        List<String> tagList = entity.getPostsTags()
+                                     .stream()
+                                     .map(pt -> pt.getTag().getName())
+                                     .collect(Collectors.toList());
+        return PostsResponseDto.builder()
+                               .entity(entity)
+                               .tags(tagList)
+                               .build();
     }
 
 	public Long getPostCount() {
