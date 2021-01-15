@@ -38,7 +38,18 @@ public class PostsService {
     }
 
     @Transactional
+    public Long updatePost(Long post_no, PostsUpdateRequestDto requestDto) {
+        Posts post = postsRepository.findById(post_no)
+                                    .orElseThrow(() -> new PostNotFoundException("해당 포스트가 없습니다. post_no: " + post_no));
+        post.update(requestDto.getTitle(), requestDto.getContent());
+        deletePostsTag(post);
+        savePostsTag(post, parseAndSaveTag(requestDto.getTags()));
+        return post_no;
+    }
+
+    @Transactional
     private List<Tag> parseAndSaveTag(String tags) {
+        // TODO: Tag validator 생성: 길이 / 특수문자
         List<Tag> tagList = new ArrayList<>();
         StringTokenizer tokenizer = new StringTokenizer(tags, "# ");
         while (tokenizer.hasMoreTokens()) {
@@ -46,7 +57,15 @@ public class PostsService {
             Tag resultTag = tagRepository.findFirstByName(newTag.getName()).orElse(newTag); // 태그가 존재하면 사용, 없으면 새로운 태그 생성
             tagList.add(tagRepository.save(resultTag));
         }
-        return tagList;
+        List<Tag> resultTagList = new ArrayList<>();
+        // 중복 제거 및 최대 갯수 제한
+        for (Tag tag : tagList) {
+            if (resultTagList.size() >= 30)
+                break;
+            if (!resultTagList.contains(tag))
+                resultTagList.add(tag);
+        }
+        return resultTagList;
     }
 
     @Transactional
@@ -57,11 +76,8 @@ public class PostsService {
     }
 
     @Transactional
-    public Long updatePost(Long post_no, PostsUpdateRequestDto requestDto) {
-        Posts post = postsRepository.findById(post_no)
-                                    .orElseThrow(() -> new PostNotFoundException("해당 포스트가 없습니다. post_no: " + post_no));
-        post.update(requestDto.getTitle(), requestDto.getContent());
-        return post_no;
+    private void deletePostsTag(Posts post) {
+        postsTagRepository.deleteAllByPosts(post);
     }
 
     public PostsResponseDto findRecentPost() {
