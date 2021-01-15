@@ -31,13 +31,13 @@ public class PostsController {
     private final PostsService postsService;
 
     @PostMapping("/save")
-    public Long save(@RequestBody PostsSaveRequestDto requestDto) {
-        return postsService.save(requestDto);
+    public Long savePost(@RequestBody PostsSaveRequestDto requestDto) {
+        return postsService.savePost(requestDto);
     }
 
     @PutMapping("/update/{postNo}")
-    public Long update(@PathVariable Long postNo, @RequestBody PostsUpdateRequestDto requestDto) {
-        return postsService.update(postNo, requestDto);
+    public Long updatePost(@PathVariable Long postNo, @RequestBody PostsUpdateRequestDto requestDto) {
+        return postsService.updatePost(postNo, requestDto);
     }
 
     @GetMapping("/recent")

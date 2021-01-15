@@ -10,11 +10,13 @@ import snorlaxious.me.snore.domain.posts.Posts;
 public class PostsSaveRequestDto {
     private String title;
     private String content;
+    private String tags;
 
     @Builder
-    public PostsSaveRequestDto(String title, String content) {
+    public PostsSaveRequestDto(String title, String content, String tags) {
         this.title = title;
         this.content = content;
+        this.tags = tags;
     }
 
     public Posts toEntity() {
