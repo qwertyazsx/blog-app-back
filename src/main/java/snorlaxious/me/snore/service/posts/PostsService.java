@@ -92,8 +92,8 @@ public class PostsService {
         return makeResponseDtoWithTags(entity);
     }
 
-    public Page<PostsResponseDto> findPostlistPage(Integer page) {
-        return postsRepository.findAllByOrderByUpdateDateDesc(PageRequest.of(page, 20)).map(new Function<Posts, PostsResponseDto>() {
+    public Page<PostsResponseDto> findPostlistPage(Integer page, Integer pageSize) {
+        return postsRepository.findAllByOrderByUpdateDateDesc(PageRequest.of(page, pageSize)).map(new Function<Posts, PostsResponseDto>() {
             @Override
             public PostsResponseDto apply(Posts entity) {
                 return makeResponseDtoWithTags(entity);

@@ -53,7 +53,7 @@ public class PostsController {
     @GetMapping("/list/{page}")
     public Page<PostsResponseDto> findPostlistPage(@PathVariable Integer page) {
         if (page < 1) throw new InvalidPageNumberException("페이지 번호가 유효하지 않습니다. : " + page);
-        return postsService.findPostlistPage(page - 1);
+        return postsService.findPostlistPage(page - 1, 10);
     }
 
     @GetMapping("/count")
