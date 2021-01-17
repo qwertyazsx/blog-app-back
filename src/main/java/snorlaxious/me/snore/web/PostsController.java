@@ -40,14 +40,16 @@ public class PostsController {
         return postsService.updatePost(postNo, requestDto);
     }
 
-    @GetMapping("/recent")
-    public PostsResponseDto findRecentPost() {
-        return postsService.findRecentPost();
-    }
-
     @GetMapping("/{postNo}")
     public PostsResponseDto findByPostNo(@PathVariable Long postNo) {
         return postsService.findByPostNo(postNo);
+    }
+
+    @GetMapping("/recent/{page}")
+    public Page<PostsResponseDto> findRecentPost(@PathVariable Integer page) {
+        if (page < 1) throw new InvalidPageNumberException("페이지 번호가 유효하지 않습니다. : " + page);
+        // TODO: 포스트 번호 받아서 이후 포스트만 전송
+        return postsService.findPostlistPage(page - 1, 3);
     }
 
     @GetMapping("/list/{page}")
